@@ -11,7 +11,7 @@ Before you begin, make sure you have the following installed on your machine:
 3. docker-compose up -d
 4. php artisan passport:install and take PASSPORT_PERSONAL_ACCESS_CLIENT_ID ,PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET put it in .env
    
-## Don't add in docker folder .env file
+## Don't Forget add in docker folder .env file
 ```
 PREFIX=
 PORT=

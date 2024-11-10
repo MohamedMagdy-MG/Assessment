@@ -1,0 +1,97 @@
+services:
+
+  #PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: php/Dockerfile
+    container_name: ${PREFIX}-app
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www/html/
+    volumes:
+      - ..:/var/www/html/
+      - /var/www/html/docker/
+      - ./storage:/var/www/html/storage
+    networks:
+      - ${PREFIX}-network
+
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: ${PREFIX}-webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80${PORT}:80"
+      - "4${PORT}:443"
+    volumes:
+      - ..:/var/www/html/
+      - /var/www/html/docker/
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - ${PREFIX}-network
+
+  #MySQL Service
+  db:
+    image: mariadb:10.5.8
+    container_name: ${PREFIX}-db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "33${PORT}:3306"
+    environment:
+      MYSQL_DATABASE: ${PREFIX}
+      MYSQL_ROOT_PASSWORD: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./db_data:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - ${PREFIX}-network
+
+  phpmyadmin:
+    container_name: ${PREFIX}-pma
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db
+    ports:
+      - "82${PORT}:80"
+    environment:
+      UPLOAD_LIMIT: 20M
+    restart: unless-stopped
+    networks:
+      - ${PREFIX}-network
+  
+  redis:
+    image: redis:alpine
+    container_name: ${PREFIX}-redis
+    restart: unless-stopped
+    ports:
+      - "63${PORT}:6379"
+    networks:
+      - ${PREFIX}-network
+
+
+  mailhog:
+    container_name: ${PREFIX}-mailhog
+    image: mailhog/mailhog
+    logging:
+      driver: 'none'  # disable saving logs
+    restart: unless-stopped
+    ports:
+      - 10${PORT}:1025 # smtp server
+      - 81${PORT}:8025 # web ui
+    networks:
+      - ${PREFIX}-network
+
+#Docker Networks
+networks:
+  assessment-network:
+    driver: bridge
+
+#Volumes
+volumes:
+  db_data:
+    driver: local

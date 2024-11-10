@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "db81edad-ef2a-4ee6-9a83-2ea7b7249d93",
+		"name": "Project API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16312970"
+	},
+	"item": [
+		{
+			"name": "Auth API",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"test\",\n  \"email\": \"test@test.com\",\n  \"password\": \"password123\",\n  \"password_confirmation\": \"password123\",\n  \"phone\": \"+201032432483\"\n}"
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/register",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@test.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/login",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send OTP",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@test.com\",\n  \"phone\": null\n}"
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/send-otp",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"send-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify OTP",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@test.com\",\n  \"phone\": null,\n  \"otp_code\": \"520371\"\n}"
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/verify-otp",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"verify-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@test.com\",\n  \"phone\" : null\n}"
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/forgot-password",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@test.com\",\n  \"phone\": null,\n  \"password\": \"newpassword123\",\n  \"password_confirmation\": \"newpassword123\",\n  \"otp_code\": \"977964\"\n}"
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/reset-password",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile API",
+			"item": [
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer your_api_token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local}}/api/v1/profile",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer your_api_token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test 2\",\r\n    \"phone\": \"+201032432483\",\r\n    \"email\": \"test@test.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/profile",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMTkyNjdjNDI4OWRkZTg2MTRjOTY1YjdlMzY1YWM2YmRiODI2OTIzNzU2NmExYzc3MTQ1M2VmOTA4Y2EzZDFiNzUzNjQ4ZjY5OTlkOTk1MGUiLCJpYXQiOjE3MzEyMzg1OTguODE3ODg5LCJuYmYiOjE3MzEyMzg1OTguODE3ODkyLCJleHAiOjE3NjI3NzQ1OTguNjU1NTExLCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.I8Ba3jApU5sv10qz6ERDIU6Fc_CcSlPNcZvDeveXMXqk5u0b78AoYNtuM0j4CEa_uZGWvhE8vfppaPAYSyW3iHdD7OJJpH_jge0Ju_chPKjV4oumMUTYd185vJRVkQdwwgWbSp79EIHb-6TBlLUAlzXC__ukIS0fM8mLLZVxWkuk-3iZKZYjSXef4Uuua2v4DjQxkLPRm16Lm67eTuhJV5bwtN56FnxZ-sPUvaJ3Fxph7FUnvSSTx4rPCkC5WP8wjnRMX5nUiY14EGO9Cm07jNg2kMrp0vHnT1tJAoJAVJg7xQ-3EWP2vXYXsabP2dBUWVOL8HfmAAHCcXYYyPYYpb6BfiFC51OEAkPNtTnSufbij1incQT_Ya9ZvTJIKLPlc1jX6RD-M3v6ZfnNVfYwjDhEs4rT7qrMocjfjoRwCvo-XC-Xbp8imblNu9AkJoPXpiM8_oyjJg1n_k20eqiwClwUbSBJMtUn5EPaPGpacRgQ6R2DaE0BYbpfQ1pdDv3zwdsvuA0UTW_2LyQUckMwR4FOmlUJJiXZFXu82y0NkoFMpYzr8Mz_uAJPj-pr-fxXw0jppmxWu--2UnQxRT3DWvfWinBwhXx2Rl_qSdGvIxeZ6cDKNiYCPNtgy1-Dr7qV6A06QKC_7pJxrt9YyHWCHdirzk7gnLUzy4TepCTeoz8",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
